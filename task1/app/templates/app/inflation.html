@@ -1,0 +1,82 @@
+<!DOCTYPE html>{% load static %}
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Инфляция в России</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+
+  <body>
+    {% block content %}
+      <div class="row">
+        <h1 class="col s12">Инфляция в России</h1>
+        <div class="col s12 m8">
+
+
+
+
+          <table border="1">
+            <tr >
+              <th>ГОД</th>
+              <th>СУММ</th>
+              <th>ЯНВ</th>
+              <th>ФЕВ</th>
+              <th>МАР</th>
+              <th>АПР</th>
+              <th>МАЙ</th>
+              <th>ИЮН</th>
+              <th>ИЮЛ</th>
+              <th>АВГ</th>
+              <th>СЕН</th>
+              <th>ОКТ</th>
+              <th>НОЯ</th>
+              <th>ДЕК</th>
+            </tr>
+
+            {% for elem in table %}
+              <tr >
+                <td>{{elem.year}}</td>>
+                <td bgcolor="grey">{{elem.summ}}</td>
+                {% for object in elem.data %}
+                  {% if object > 100 %}
+                    <td>-</td>
+                  {% else %}
+                    {% if object >= 5 %}
+                      <td bgcolor="DarkRed"> {{object}} </td>
+                    {% else %}
+                      {% if object >= 2 %}
+                        <td bgcolor="FireBrick"> {{object}} </td>
+                      {% else %}
+                        {% if object >= 1 %}
+                          <td bgcolor="red"> {{object}} </td>
+                        {% else %}
+                          {%if object >= 0 %}
+                            <td> {{object}}</td>
+                          {% else %}
+                            <td bgcolor="YellowGreen"> {{object}} </td>
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </table>
+
+
+
+
+
+        </div>
+      </div>
+    {% endblock %}
+  </body>
+</html>
